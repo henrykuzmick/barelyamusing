@@ -1,0 +1,26 @@
+.frame
+  padding: 10px
+  padding-top: 20px
+  border: dashed 2px #eee
+  position: relative
+  text-align: center
+  .frameName
+    position: absolute
+    top: 0
+    text-align: center
+    left: 30px
+    transform: translate(0, -50%)
+    font-size: 25px
+    font-family: 'Just Me Again Down Here'
+    margin: 0
+    padding: 0
+    color: #69acaa
+    &::before
+      content: ""
+      width: calc(100% + 20px)
+      height: 100%
+      background-color: white
+      position: absolute
+      top: 0
+      left: -10px
+      z-index: -1

@@ -1,0 +1,103 @@
+body
+  background-color: #ddd
+  // background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/stardust.png")
+  // background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/agsquare.png")
+  // background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/food.png")
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/ignasi_pattern_s.png")
+  background-attachment: fixed
+  text-align: center
+  h1
+    // font-family: 'Love Ya Like A Sister'
+    // font-family: 'Fredericka the Great', cursive
+    font-family: 'Just Me Again Down Here', cursive
+    color: #4c5356
+    text-align: left
+.header
+  background-color: #fac564
+  // background-image: url('https://cdn-images-1.medium.com/max/2000/1*X0YAhnDmAmUXec83Y1IDZA.jpeg')
+  // background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/weather.png")
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/food.png")
+  background-position: center
+  border-radius: 5px 5px 0 0
+  .headerTxt
+    padding-top: 40px
+  .headerName
+    font-size: 90px
+    padding-bottom: 0px
+    color: white
+    text-align: center
+    font-family: 'Amatic SC', sans-serif
+    position: relative
+    transition: all 0.2s ease-in-out
+    &::after
+      content: ""
+      width: 0
+      height: 3px
+      position: absolute
+      background-color: red
+      left: -20px
+      top: 50%
+      transition: all 0.3s ease-in-out
+      opacity: 0.5
+    &:hover
+      text-decoration: none
+      color: red
+      &::after
+        width: calc(100% + 40px)
+        opacity: 1
+    &:focus
+      text-decoration: none
+  p
+    color: white
+    font-size: 16px
+.navbar
+  border-radius: 0 !important
+  padding-bottom: 20px
+  a
+    color: white
+    &:hover
+      color: #fac564
+      background-color: white !important
+    &:focus
+      color: white
+      background-color: transparent !important
+      &:hover
+        color: #fac564
+        background-color: white !important
+
+.container
+  text-align: center
+.maincontainer
+  background-color: white
+  width: 980px
+  margin: 0
+  padding: 0
+  display: inline-block
+  margin-top: 30px
+  border-radius: 5px
+  padding-bottom: 40px
+  margin-bottom: 50px
+  @media screen and (max-width: 980px)
+    width: auto
+  .col-2
+    display: block
+    float: left
+    width: 640px
+    padding: 10px
+    margin: 0px
+  .col-1
+    display: block
+    float: left
+    width: 320px
+    padding: 10px
+    margin: 0px
+.lp0
+  padding-left: 0
+.p5
+  padding-left: 5px
+  padding-right: 5px
+.navbar .navbar-nav
+  display: inline-block
+  float: none
+.navbar .navbar-collapse
+  text-align: center

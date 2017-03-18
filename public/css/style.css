@@ -1,0 +1,207 @@
+body {
+  background-color: #ddd;
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/ignasi_pattern_s.png");
+  background-attachment: fixed;
+  text-align: center; }
+  body h1 {
+    font-family: 'Just Me Again Down Here', cursive;
+    color: #4c5356;
+    text-align: left; }
+
+.header {
+  background-color: #fac564;
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/food.png");
+  background-position: center;
+  border-radius: 5px 5px 0 0; }
+  .header .headerTxt {
+    padding-top: 40px; }
+  .header .headerName {
+    font-size: 90px;
+    padding-bottom: 0px;
+    color: white;
+    text-align: center;
+    font-family: 'Amatic SC', sans-serif;
+    position: relative;
+    transition: all 0.2s ease-in-out; }
+    .header .headerName::after {
+      content: "";
+      width: 0;
+      height: 3px;
+      position: absolute;
+      background-color: red;
+      left: -20px;
+      top: 50%;
+      transition: all 0.3s ease-in-out;
+      opacity: 0.5; }
+    .header .headerName:hover {
+      text-decoration: none;
+      color: red; }
+      .header .headerName:hover::after {
+        width: calc(100% + 40px);
+        opacity: 1; }
+    .header .headerName:focus {
+      text-decoration: none; }
+  .header p {
+    color: white;
+    font-size: 16px; }
+
+.navbar {
+  border-radius: 0 !important;
+  padding-bottom: 20px; }
+  .navbar a {
+    color: white; }
+    .navbar a:hover {
+      color: #fac564;
+      background-color: white !important; }
+    .navbar a:focus {
+      color: white;
+      background-color: transparent !important; }
+      .navbar a:focus:hover {
+        color: #fac564;
+        background-color: white !important; }
+
+.container {
+  text-align: center; }
+
+.maincontainer {
+  background-color: white;
+  width: 980px;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin-top: 30px;
+  border-radius: 5px;
+  padding-bottom: 40px;
+  margin-bottom: 50px; }
+  @media screen and (max-width: 980px) {
+    .maincontainer {
+      width: auto; } }
+  .maincontainer .col-2 {
+    display: block;
+    float: left;
+    width: 640px;
+    padding: 10px;
+    margin: 0px; }
+  .maincontainer .col-1 {
+    display: block;
+    float: left;
+    width: 320px;
+    padding: 10px;
+    margin: 0px; }
+
+.lp0 {
+  padding-left: 0; }
+
+.p5 {
+  padding-left: 5px;
+  padding-right: 5px; }
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none; }
+
+.navbar .navbar-collapse {
+  text-align: center; }
+
+.comicPage {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  position: relative; }
+  .comicPage .bottom {
+    padding: 70px 50px 0 50px; }
+  .comicPage h1 {
+    color: #4c5356;
+    font-size: 50px;
+    margin-bottom: 20px;
+    text-align: center; }
+  .comicPage .comicHolder {
+    width: 700px;
+    display: inline-block;
+    background-color: white;
+    min-height: 600px; }
+    .comicPage .comicHolder img {
+      width: 100%; }
+  .comicPage .left, .comicPage .right {
+    width: 200px;
+    position: absolute;
+    top: 200px; }
+  .comicPage .left {
+    left: -100px; }
+  .comicPage .right {
+    right: -100px; }
+
+.thumb {
+  width: 110px;
+  height: 110px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin-bottom: 5px;
+  padding: 0; }
+  .thumb .imghold {
+    width: 100px;
+    height: 100px;
+    overflow: hidden; }
+  .thumb img {
+    border: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.7s cubic-bezier(0.01, 0.49, 0.58, 1); }
+  .thumb:hover img {
+    transform: scale(1.1);
+    opacity: 0.8; }
+  .thumb.thumb-fullwidth {
+    width: 100%;
+    height: auto; }
+    .thumb.thumb-fullwidth .imghold {
+      width: 100%;
+      height: auto; }
+  .thumb.thumb-frame {
+    padding: 5px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+    background-color: white; }
+
+.dropzoneHolder {
+  display: inline-block;
+  margin: 10px; }
+  .dropzoneHolder div {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+
+.adminlist {
+  text-align: left; }
+  .adminlist img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px; }
+
+.frame {
+  padding: 10px;
+  padding-top: 20px;
+  border: dashed 2px #eee;
+  position: relative;
+  text-align: center; }
+  .frame .frameName {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    left: 30px;
+    transform: translate(0, -50%);
+    font-size: 25px;
+    font-family: 'Just Me Again Down Here';
+    margin: 0;
+    padding: 0;
+    color: #69acaa; }
+    .frame .frameName::before {
+      content: "";
+      width: calc(100% + 20px);
+      height: 100%;
+      background-color: white;
+      position: absolute;
+      top: 0;
+      left: -10px;
+      z-index: -1; }
