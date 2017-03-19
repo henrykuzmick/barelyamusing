@@ -6,27 +6,13 @@ var startFile = 'bin/www';
 
 var tmpDir = appName+'-' + new Date().getTime();
 
-// configuration
-plan.target('staging', [
-  {
-    host: '104.131.166.249',
-    username: username,
-    agent: process.env.SSH_AUTH_SOCK
-  }
-]);
-
 plan.target('production', [
   {
     host: '104.131.166.249',
     username: username,
+    privateKey: '/Users/group/.ssh/id_rsa',
     agent: process.env.SSH_AUTH_SOCK
-  },
-//add in another server if you have more than one
-// {
-//   host: '104.131.93.216',
-//   username: username,
-//   agent: process.env.SSH_AUTH_SOCK
-// }
+  }
 ]);
 
 // run commands on localhost

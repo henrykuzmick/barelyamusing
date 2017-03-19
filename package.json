@@ -4,6 +4,7 @@
   "description": "ze blog",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon ./bin/www",
     "watch-css": "node-sass -w sass/style.sass public/css/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
