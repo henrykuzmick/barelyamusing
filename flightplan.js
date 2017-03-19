@@ -1,14 +1,14 @@
 var plan = require('flightplan');
 
 var appName = 'barelyamusing';
-var username = 'deploy';
+var username = 'root';
 var startFile = 'bin/www';
 
 var tmpDir = appName+'-' + new Date().getTime();
 
 plan.target('production', [
   {
-    host: '104.131.166.249',
+    host: '138.197.20.57',
     username: username,
     privateKey: '/Users/group/.ssh/id_rsa',
     agent: process.env.SSH_AUTH_SOCK
