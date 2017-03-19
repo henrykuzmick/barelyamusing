@@ -1,8 +1,14 @@
 const express = require('express');
-const router = express.Router();
-const Comic = require('../models/comic');
-const multer  =   require('multer');
+const passport = require('passport');
+const multer = require('multer');
 const mkdirp = require('mkdirp');
+
+const Comic = require('../models/comic');
+
+const requireAuth = passport.authenticate('jwt', { session: false });
+const requireSignin = passport.authenticate('local', {session: false});
+
+const router = express.Router();
 
 const storage =   multer.diskStorage({
   destination: function (req, file, callback) {
@@ -26,11 +32,19 @@ router.get('/comics', (req, res, next) => {
       comics
     });
   });
-
 });
 
 router.get('/comics/new', (req, res, next) => {
   res.render('add_comic', { title: 'Barely Amusing - New Comic' });
+});
+
+router.get('/comics/edit/:url', (req, res, next) => {
+  Comic.getComic(req.params.url).then((comic) => {
+    res.render('edit_comic', {
+      title: `Barely Amusing - ${comic.title}`,
+      comic
+    });
+  })
 });
 
 

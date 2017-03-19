@@ -7,6 +7,8 @@ body {
     font-family: 'Just Me Again Down Here', cursive;
     color: #4c5356;
     text-align: left; }
+  body p {
+    color: #4c5356; }
 
 .header {
   background-color: #fac564;
@@ -131,10 +133,23 @@ body {
     left: -100px; }
   .comicPage .right {
     right: -100px; }
+  .comicPage .buttons {
+    margin-top: 20px; }
+    .comicPage .buttons a {
+      font-size: 30px;
+      color: #333;
+      text-decoration: none !important;
+      margin: 20px; }
+      .comicPage .buttons a:hover {
+        color: #555; }
   .comicPage .social {
-    font-size: 30px; }
+    padding-top: 20px; }
+    .comicPage .social p {
+      margin-bottom: 0; }
     .comicPage .social a {
-      text-decoration: none !important; }
+      font-size: 30px;
+      text-decoration: none !important;
+      margin: 0; }
     .comicPage .social .fb {
       color: #3a589e; }
       .comicPage .social .fb:hover {

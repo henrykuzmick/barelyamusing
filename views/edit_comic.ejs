@@ -10,24 +10,29 @@
       <div class="container-fluid">
         <div class="row">
           <div class="text-left col-xs-12">
-            <h3>Add New Comic</h3>
+            <h3>Edit Comic</h3>
             <br>
-            <form id="newComicForm" method="post" action="add" enctype="multipart/form-data">
+            <form id="newComicForm" method="post" action="update/:<%= comic.url %>" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="name">Title</label>
-                <input class="form-control" name="title" type="text"/>
+                <input class="form-control" name="title" type="text" value="<%= comic.title %>"/>
               </div>
               <div class="form-group">
                 <label for="tags">Tags</label>
-                <input class="form-control" name="tags" type="text"/>
+                <input class="form-control" name="tags" type="text" value="<%= comic.tags %>"/>
               </div>
               <div class="form-group">
                 <label for="comment">Comment</label>
-                <textarea class="form-control" name="comment"/></textarea>
+                <textarea class="form-control" name="comment"/><%= comic.comment %></textarea>
               </div>
               <div class="form-group">
                 <label for="favorite">Favorite</label>
-                <input class="form-check-input" name="favorite" type="checkbox"/>
+                <input
+                  class="form-check-input"
+                  name="favorite"
+                  type="checkbox"
+                  <% if(comic.favorite) { %> checked <% } %>
+                />
               </div>
               <div class="form-group">
                 <label for="comics">Images</label>

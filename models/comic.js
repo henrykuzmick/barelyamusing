@@ -16,7 +16,6 @@ const comicSchema = Schema({
 });
 
 const Comic = mongoose.model('Comic', comicSchema);
-
 module.exports = Comic;
 
 module.exports.addComic = function(comic, callback)  {
@@ -49,21 +48,3 @@ module.exports.getNext = (id) => {
 module.exports.getPrev = (id) => {
   return Comic.findOne({_id: {$lt: id}}).sort({_id: -1 });
 }
-
-
-//
-// module.exports.addCategory = function(category, callback)  {
-//   Category.create(category, callback);
-// }
-//
-// module.exports.getCategoryById = function(id, callback) {
-//   Category.findById(id, callback);
-// }
-//
-// module.exports.updateCategory = function(id, update, options, callback){
-//   Category.findOneAndUpdate({_id: id}, update, options, callback);
-// }
-//
-// module.exports.removeCategory = function(id, callback) {
-//   Category.remove({_id: id}, callback);
-// }
