@@ -131,6 +131,38 @@ body {
     left: -100px; }
   .comicPage .right {
     right: -100px; }
+  .comicPage .social {
+    font-size: 30px; }
+    .comicPage .social a {
+      text-decoration: none !important; }
+    .comicPage .social .fb {
+      color: #3a589e; }
+      .comicPage .social .fb:hover {
+        color: #4d6fbe; }
+    .comicPage .social .tw {
+      color: #00aced; }
+      .comicPage .social .tw:hover {
+        color: #21c2ff; }
+    .comicPage .social .pn {
+      color: #cd2029; }
+      .comicPage .social .pn:hover {
+        color: #e13f47; }
+    .comicPage .social .gp {
+      color: #df4b37; }
+      .comicPage .social .gp:hover {
+        color: #e67363; }
+    .comicPage .social .ln {
+      color: #0d77b7; }
+      .comicPage .social .ln:hover {
+        color: #1096e7; }
+    .comicPage .social .rd {
+      color: #666; }
+      .comicPage .social .rd:hover {
+        color: gray; }
+    .comicPage .social .em {
+      color: #999; }
+      .comicPage .social .em:hover {
+        color: #b3b3b3; }
 
 .thumb {
   width: 110px;

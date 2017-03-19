@@ -27,6 +27,17 @@ module.exports.getComics = function(callback, limit) {
   Comic.find(callback).limit(limit).sort({_id: 1})
 }
 
+module.exports.getRandom = () => {
+  return Comic.count({}).then((i) => {
+    const skip = Math.floor(Math.random()*i);
+    return Comic.find({}).skip(skip).limit(1);
+  });
+}
+
+module.exports.getLatest = () => {
+  return Comic.find({}).sort({_id: -1 }).limit(1);
+}
+
 module.exports.getComic = (url) => {
   return Comic.findOne({url: url});
 }

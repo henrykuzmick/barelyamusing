@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const index = require('./routes/index');
 const admin = require('./routes/admin');
 const comics = require('./routes/comics');
+const about = require('./routes/about');
 
 // Connect mongoose
 mongoose.connect('mongodb://localhost/barelyamusing');
@@ -18,6 +19,7 @@ const app = express();
 app.use('/', index);
 app.use('/admin', admin);
 app.use('/comics', comics);
+app.use('/about', about);
 
 // Views
 app.set('views', path.join(__dirname, 'views'));
