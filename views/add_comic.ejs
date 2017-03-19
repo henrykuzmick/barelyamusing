@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./partials/head %>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-push-2">
+          <br><br>
+          <div class="panel panel-default">
+            <div class="panel-body text-left">
+              <form id="newComicForm" method="post" action="add" enctype="multipart/form-data">
+                <div class="form-group row">
+                  <label class="col-xs-2 col-form-label" htmlFor="name">Title</label>
+                  <div class="col-xs-10">
+                    <input class="form-control" name="title" type="text"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xs-2 col-form-label" htmlFor="tags">Tags</label>
+                  <div class="col-xs-10">
+                    <input class="form-control" name="tags" type="text"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xs-2 col-form-label" htmlFor="comment">Comment</label>
+                  <div class="col-xs-10">
+                    <textarea class="form-control" name="comment"/></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xs-2 col-form-label" htmlFor="favorite">Favorite</label>
+                  <div class="col-xs-10">
+                    <input class="form-check-input" name="favorite" type="checkbox"/>
+                  </div>
+                </div>
+                <input name="comics" multiple type="file" accept="image/*"/>
+                <br />
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <span id = "status"></span>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <% include ./partials/scripts %>
+  </body>
+</html>

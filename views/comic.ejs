@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./partials/head %>
+    <title><%= `Barely Amusing - ${comic.title}` %></title>
+  </head>
+  <body>
+    <div class="maincontainer">
+      <% include ./partials/header %>
+      <div class="comicPage">
+        <div class="comicHolder">
+          <h1><%= comic.title %></h1>
+          <img src="/<%= comic.main %>" />
+        </div>
+        <% if(prev !== null) { %>
+          <div class="left">
+            <a href="/comics/<%= prev.url %>" class="thumb thumb-frame">
+              <div class="imghold">
+                <img src="/<%= prev.thumb %>" />
+              </div>
+            </a>
+          </div>
+          <% } %>
+        <% if(next !== null) { %>
+          <div class="right">
+            <a href="/comics/<%= next.url %>" class="thumb thumb-frame">
+              <div class="imghold">
+                <img src="/<%= next.thumb %>" />
+              </div>
+            </a>
+          </div>
+        <% } %>
+        <div class="buttons">
+          <% if(prev !== null) { %>
+            <a href="/comics/<%= prev.url %>">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+          <% } %>
+          <a href="/comics/random"><i class="fa fa-refresh" aria-hidden="true"></i></Link>
+          <% if(next !== null) { %>
+            <a href="/comics/<%= next.url %>">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          <% } %>
+
+
+
+        </div>
+        <div class="bottom">
+          <% if(comic.comment !== null) { %>
+            <div class="comment">
+              <h4>Authors comment</h4>
+              <p><%= comic.comment %></p>
+            </div>
+          <% } %>
+      </div>
+    </div>
+    <% include ./partials/scripts %>
+  </body>
+</html>
