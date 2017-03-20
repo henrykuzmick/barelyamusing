@@ -35,9 +35,10 @@ plan.remote(function(remote) {
   remote.rm('-rf /tmp/' + tmpDir);
 
   remote.log('Moving comics to temp dir.');
-  remote.sudo('cp -R ~/' + appName + '/public/comics ~/comics-tmp-' + new Date().getTime());
+  remote.sudo('cp -R ~/' + appName + '/public/comics ~/comics-tmp');
   remote.log('Clearing new comics folder');
   remote.rm('-rf ~/' + tmpDir + '/public/comics');
+  remote.sudo('cp -R ~/comics-tmp ~/' + tmpDir + '/public/comics');
 
   remote.log('Install dependencies');
   remote.sudo('npm --production --prefix ~/' + tmpDir + ' install ~/' + tmpDir, {user: username});
@@ -45,5 +46,5 @@ plan.remote(function(remote) {
   remote.log('Reload application');
   remote.sudo('ln -snf ~/' + tmpDir + ' ~/'+appName, {user: username});
   remote.exec('forever stop ~/'+appName+'/'+startFile, {failsafe: true});
-  remote.exec('forever start ~/'+appName+'/'+startFile);
+  remote.exec('forever start ~/'+appName+'/'+startFile+' -w -l');
 });
