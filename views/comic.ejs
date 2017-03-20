@@ -35,49 +35,53 @@
             <a href="/comics/<%= prev.url %>">
               <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </a>
+          <% } else {%>
+            <a class="disabled">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
           <% } %>
           <a href="/comics/random"><i class="fa fa-refresh" aria-hidden="true"></i></a>
           <% if(next !== null) { %>
             <a href="/comics/<%= next.url %>">
               <i class="fa fa-arrow-right" aria-hidden="true"></i>
             </a>
+          <% } else {%>
+            <a class="disabled">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
           <% } %>
           <div class="social">
             <p>Sharing is carring.</p>
-            <a class="fb" href="">
+            <a class="fb" target="_blank" href="https://www.facebook.com/sharer.php?u=http://www.barelyamusing.com/comics/<%= comic.url%>">
               <i class="fa fa-facebook-square" aria-hidden="true"></i>
             </a>
-            <a class="tw" href="">
+            <a class="tw" target="_blank" href="https://twitter.com/intent/tweet?url=http://www.barelyamusing.com/comics/<%= comic.url%>&text=Hey check this out">
               <i class="fa fa-twitter-square" aria-hidden="true"></i>
             </a>
-            <a class="rd" href="">
+            <a class="rd" target="_blank" href="https://www.reddit.com/submit?url=http://www.barelyamusing.com/comics/<%= comic.url%>&title=<%= comic.title %>">
               <i class="fa fa-reddit-square" aria-hidden="true"></i>
             </a>
-            <a class="pn" href="">
+            <a class="pn" target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.barelyamusing.com/comics/<%= comic.url%>&media=http://www.barelyamusing.com/comics/<%= comic.url%>/main.png&description=<%= comic.title %>">
               <i class="fa fa-pinterest-square" aria-hidden="true"></i>
             </a>
-            <a class="gp" href="">
+            <a class="gp" target="_blank" href="https://plus.google.com/share?url=http://www.barelyamusing.com/comics/<%= comic.url%>">
               <i class="fa fa-google-plus-square" aria-hidden="true"></i>
             </a>
-            <a class="ln" href="">
+            <a class="ln" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http://www.barelyamusing.com/comics/<%= comic.url%>&title=<%= comic.title %>">
               <i class="fa fa-linkedin-square" aria-hidden="true"></i>
             </a>
-            <a class="em" href="">
+            <a class="em" href="mailto:?subject=<%= comic.title%>&body=Hey check this out: https://www.facebook.com/sharer.php?u=http://www.barelyamusing.com/comics/<%= comic.url%>">
               <i class="fa fa-envelope-square" aria-hidden="true"></i>
             </a>
           </div>
 
         </div>
         <div class="bottom">
-          <% if(comic.comment !== null) { %>
-            <div class="comment">
-              <h4>Authors comment</h4>
-              <p><%= comic.comment %></p>
-            </div>
-          <% } %>
+
           <div id="disqus_thread"></div>
         </div>
       </div>
+      <% include ./partials/footer %>
     </div>
     <%# disqus stuff%>
     <script>
