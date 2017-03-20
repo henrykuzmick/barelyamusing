@@ -6,9 +6,9 @@ const Comic = require('../models/comic');
 
 const router = express.Router();
 
-const storage =   multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    const dest = '/public/comics/' + slugify(req.body.title);
+    const dest = 'public/comics/' + slugify(req.body.title);
     mkdirp.sync(dest);
     callback(null, dest);
   },
