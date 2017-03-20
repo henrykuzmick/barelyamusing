@@ -44,7 +44,7 @@ router.get('/comics/edit/:url', ensureAuthenticated, (req, res, next) => {
 });
 
 
-router.post('/comics/add', ensureAuthenticated, function(req,res){
+router.post('/comics/add', function(req,res){
   let comic = new Comic();
   upload(req,res,function(err) {
     if(err) {
