@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
     if(err) {
       res.send(err);
     }
-    const random = getRandomArrayElements(comics, 4);
+    const random = getRandomArrayElements(comics, 8);
     const latest = comics.slice(-3).reverse();
     res.render('index', {
       title: 'Barely Amusing',

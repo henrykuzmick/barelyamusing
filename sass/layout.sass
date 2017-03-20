@@ -14,6 +14,8 @@ body
   background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/food.png")
   background-position: center
   border-radius: 5px 5px 0 0
+  @media screen and (max-width: 980px)
+    border-radius: 0
   .headerTxt
     padding-top: 40px
   .headerName
@@ -24,6 +26,8 @@ body
     font-family: 'Amatic SC', sans-serif
     position: relative
     transition: all 0.2s ease-in-out
+    @media screen and (max-width: 420px)
+      font-size: 60px
     &::after
       content: ""
       width: 0
@@ -48,6 +52,8 @@ body
 .navbar
   border-radius: 0 !important
   padding-bottom: 20px
+  .nav > li
+    float: left !important
   a
     color: white
     &:hover
@@ -73,7 +79,10 @@ body
   padding-bottom: 0px
   margin-bottom: 50px
   @media screen and (max-width: 980px)
-    width: auto
+    width: 100%
+    margin-bottom: 0
+    margin-top: 0
+    border-radius: 0
   .col-2
     display: block
     float: left
@@ -88,6 +97,8 @@ body
     margin: 0px
 .lp0
   padding-left: 0
+  @media screen and (max-width: 992px)
+    padding-left: 15px
 .p5
   padding-left: 5px
   padding-right: 5px
