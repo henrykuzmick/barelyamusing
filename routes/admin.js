@@ -2,7 +2,6 @@ const express = require('express');
 const passport = require('passport');
 const multer = require('multer');
 const mkdirp = require('mkdirp');
-
 const Comic = require('../models/comic');
 
 const requireAuth = passport.authenticate('jwt', { session: false });
@@ -22,7 +21,7 @@ const storage =   multer.diskStorage({
 });
 const upload = multer({ storage }).any()
 
-router.get('/comics', (req, res, next) => {
+router.get('/comics', ensureAuthenticated, (req, res, next) => {
   Comic.getComics((err, comics) => {
     if(err) {
       res.send(err);
@@ -34,11 +33,11 @@ router.get('/comics', (req, res, next) => {
   });
 });
 
-router.get('/comics/new', (req, res, next) => {
+router.get('/comics/new', ensureAuthenticated, (req, res, next) => {
   res.render('add_comic', { title: 'Barely Amusing - New Comic' });
 });
 
-router.get('/comics/edit/:url', (req, res, next) => {
+router.get('/comics/edit/:url', ensureAuthenticated, (req, res, next) => {
   Comic.getComic(req.params.url).then((comic) => {
     res.render('edit_comic', {
       title: `Barely Amusing - ${comic.title}`,
@@ -48,7 +47,7 @@ router.get('/comics/edit/:url', (req, res, next) => {
 });
 
 
-router.post('/comics/add', function(req,res){
+router.post('/comics/add', ensureAuthenticated, function(req,res){
   let comic = new Comic();
   upload(req,res,function(err) {
     if(err) {
@@ -81,7 +80,12 @@ const slugify = function(text) {
     .replace(/-+$/, '');            // Trim - from end of text
 }
 
-
-
+function ensureAuthenticated(req, res, next) {
+  if(req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect('/');
+  }
+}
 
 module.exports = router;

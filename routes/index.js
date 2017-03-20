@@ -1,11 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
 const Comic = require('../models/comic');
 const User = require('../models/user');
-const Authentication = require('../controllers/authentication');
-const passportService = require('../services/passport');
-const jwt = require('jwt-simple');
 const config = require('../config');
+const router = express.Router();
 
 router.get('/', (req, res, next) => {
   Comic.getComics((err, comics) => {
@@ -27,31 +26,83 @@ router.post('/signup', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  if(!email || !password) {
-    return res.status(422).send({ error: 'You must provide email and password' });
-  }
+  req.checkBody('email', 'Email is required').notEmpty();
+  req.checkBody('email', 'Email must be valid').isEmail();
+  req.checkBody('password', 'Password is required').notEmpty();
 
-  // See if a user with the given email exists
-  User.findOne({ email }, function(err, existingUser) {
-    if(err) { return next(err); }
-    if(existingUser) {
-      return res.status(422).send({ error: 'Email is in use' });
-    }
-    const user = new User({
-      email,
-      password
+  let errors = req.validationErrors();
+
+  if(errors) {
+    res.render('signup', {
+      title: 'Barely Amusing - Sign up',
+      errors
     });
-    user.save(function(err) {
-      if(err) { return next(err); }
-      res.cookie('token', tokenForUser(user));
-      res.redirect('/admin/comics/');
+  } else {
+    const newUser = new User({
+      email, password
     });
-  });
+
+    User.signupUser(newUser, (err, user) => {
+      if(err) throw err;
+      res.redirect('/admin/comics')
+    })
+  }
 });
 
 router.get('/signup', (req, res, next) => {
-  res.render('signup', { title: 'Barely Amusing - Signup' });
+  res.render('signup', {
+    title: 'Barely Amusing - Signup',
+    errors: false
+  });
 });
+
+router.get('/signin', (req, res, next) => {
+  res.render('signin', {
+    title: 'Barely Amusing - Sign In',
+    errors: false
+  });
+});
+
+router.get('/signout', (req, res, next) => {
+  req.logout();
+  res.redirect('/')
+});
+
+passport.use(new localStrategy((username, password, done) => {
+  User.getUserByEmail(username, (err, user) => {
+    if(err) throw err;
+    if(!user) {
+      return done(null, false, {message: 'No user found'});
+    }
+
+    User.comparePassword(password, user.password, (err, isMatch) => {
+      if(err) throw err;
+      if(isMatch) {
+        return done(null, user);
+      } else {
+        return done(null, false, {message: 'Wrong Password'});
+      }
+    })
+  });
+}));
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.getUserById(id, (err, user) => {
+    done(err, user)
+  });
+});
+
+router.post('/signin', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect:'/admin/comics',
+    failureRedirect:'/signin',
+    failureFlash: true
+  })(req, res, next);
+})
 
 
 module.exports = router;
@@ -65,9 +116,4 @@ const getRandomArrayElements = function(arr, count) {
     shuffled[i] = temp;
   }
   return shuffled.slice(min);
-}
-
-function tokenForUser(user) {
-  const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp}, config.secret);
 }
