@@ -72,6 +72,8 @@ app.use('/about', about);
 app.use('/admin', admin);
 
 // Public path
+
+app.use('/comics', express.static(path.join(__dirname, '../comics')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 module.exports = app;

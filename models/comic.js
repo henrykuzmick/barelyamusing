@@ -22,6 +22,10 @@ module.exports.addComic = function(comic, callback)  {
   Comic.create(comic, callback);
 }
 
+module.exports.editComic = function(url, comic, callback) {
+  Comic.update({url}, comic, callback)
+}
+
 module.exports.getComics = function(callback, limit) {
   Comic.find(callback).limit(limit).sort({_id: 1})
 }
@@ -34,7 +38,7 @@ module.exports.getRandom = () => {
 }
 
 module.exports.getLatest = () => {
-  return Comic.find({}).sort({_id: -1 }).limit(1);
+  return Comic.find({}).sort({_id: -1 }).limit(3);
 }
 
 module.exports.getComic = (url) => {

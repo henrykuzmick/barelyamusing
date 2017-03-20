@@ -8,7 +8,12 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    const dest = 'public/comics/' + slugify(req.body.title);
+    let dest;
+    if(req.body.url) {
+      dest = 'comics/' + req.body.url;
+    } else {
+      dest = 'comics/' + slugify(req.body.title);
+    }
     mkdirp.sync(dest);
     callback(null, dest);
   },
@@ -30,7 +35,7 @@ router.get('/comics', ensureAuthenticated, (req, res, next) => {
   });
 });
 
-router.get('/comics/new', ensureAuthenticated, (req, res, next) => {
+router.get('/comics/add', ensureAuthenticated, (req, res, next) => {
   res.render('add_comic', { title: 'Barely Amusing - New Comic' });
 });
 
@@ -44,7 +49,7 @@ router.get('/comics/edit/:url', ensureAuthenticated, (req, res, next) => {
 });
 
 
-router.post('/comics/add', function(req,res){
+router.post('/comics/add', ensureAuthenticated, function(req,res){
   let comic = new Comic();
   upload(req,res,function(err) {
     if(err) {
@@ -68,13 +73,41 @@ router.post('/comics/add', function(req,res){
   });
 });
 
+router.post('/comics/edit/:url', ensureAuthenticated, function(req, res) {
+  let comic = {}
+  upload(req,res,function(err) {
+    if(err) {
+      return res.end("Error uploading file.");
+    }
+    comic.title = req.body.title;
+    comic.tags = req.body.tags.split(',');
+    comic.comment = req.body.comment;
+    comic.favorite = req.body.favorite;
+    comic.url = req.body.url;
+    comic.fb = `comics/${comic.url}/fb.png`;
+    comic.long = `comics/${comic.url}/long.png`;
+    comic.main = `comics/${comic.url}/main.png`;
+    comic.thumb = `comics/${comic.url}/thumb.png`;
+    Comic.editComic(req.params.url, comic, (err) => {
+      if(err) {
+        res.send(err);
+      }
+      res.redirect('/admin/comics');
+    })
+  });
+});
+
+// router.post('/comics/delete/:url', ensureAuthenticated, function(req, res) {
+//
+// });
+
 const slugify = function(text) {
   return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-    .replace(/^-+/, '')             // Trim - from start of text
-    .replace(/-+$/, '');            // Trim - from end of text
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
 }
 
 function ensureAuthenticated(req, res, next) {

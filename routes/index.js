@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
       res.send(err);
     }
     const random = getRandomArrayElements(comics, 4);
-    const latest = comics.slice(3).reverse();
+    const latest = comics.slice(-3).reverse();
     res.render('index', {
       title: 'Barely Amusing',
       comics,
@@ -22,39 +22,39 @@ router.get('/', (req, res, next) => {
   });
 });
 
-router.post('/signup', (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  req.checkBody('email', 'Email is required').notEmpty();
-  req.checkBody('email', 'Email must be valid').isEmail();
-  req.checkBody('password', 'Password is required').notEmpty();
-
-  let errors = req.validationErrors();
-
-  if(errors) {
-    res.render('signup', {
-      title: 'Barely Amusing - Sign up',
-      errors
-    });
-  } else {
-    const newUser = new User({
-      email, password
-    });
-
-    User.signupUser(newUser, (err, user) => {
-      if(err) throw err;
-      res.redirect('/admin/comics')
-    })
-  }
-});
-
-router.get('/signup', (req, res, next) => {
-  res.render('signup', {
-    title: 'Barely Amusing - Signup',
-    errors: false
-  });
-});
+// router.post('/signup', (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
+//
+//   req.checkBody('email', 'Email is required').notEmpty();
+//   req.checkBody('email', 'Email must be valid').isEmail();
+//   req.checkBody('password', 'Password is required').notEmpty();
+//
+//   let errors = req.validationErrors();
+//
+//   if(errors) {
+//     res.render('signup', {
+//       title: 'Barely Amusing - Sign up',
+//       errors
+//     });
+//   } else {
+//     const newUser = new User({
+//       email, password
+//     });
+//
+//     User.signupUser(newUser, (err, user) => {
+//       if(err) throw err;
+//       res.redirect('/admin/comics')
+//     })
+//   }
+// });
+//
+// router.get('/signup', (req, res, next) => {
+//   res.render('signup', {
+//     title: 'Barely Amusing - Signup',
+//     errors: false
+//   });
+// });
 
 router.get('/signin', (req, res, next) => {
   res.render('signin', {
