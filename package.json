@@ -28,6 +28,6 @@
   "devDependencies": {
     "flightplan": "^0.6.15",
     "fly": "^2.0.5",
-    "node-sass": "^4.5.0",
+    "node-sass": "^4.5.0"
   }
 }

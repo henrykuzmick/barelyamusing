@@ -35,10 +35,10 @@ plan.remote(function(remote) {
   remote.rm('-rf /tmp/' + tmpDir);
 
   remote.log('Moving comics to temp dir.');
-  remote.sudo('cp -R ~/' + appName + '/public/comics ~/comics-tmp');
+  // remote.sudo('cp -R ~/' + appName + '/public/comics ~/comics-tmp');
   remote.log('Clearing new comics folder');
-  remote.rm('-rf ~/' + tmpDir + '/public/comics');
-  remote.sudo('cp -R ~/comics-tmp ~/' + tmpDir + '/public/comics');
+  // remote.rm('-rf ~/' + tmpDir + '/public/comics');
+  // remote.sudo('cp -R ~/comics-tmp ~/' + tmpDir + '/public/comics');
 
   remote.log('Install dependencies');
   remote.sudo('npm --production --prefix ~/' + tmpDir + ' install ~/' + tmpDir, {user: username});
