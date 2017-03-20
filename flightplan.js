@@ -25,6 +25,7 @@ plan.local(function(local) {
   var filesToCopy = local.exec('git ls-files', {silent: true});
   // rsync files to all the destination's hosts
   local.transfer(filesToCopy, '/tmp/' + tmpDir);
+  local.transfer('config.js', '/tmp/' + tmpDir);
 });
 
 // run commands on remote hosts (destinations)
@@ -32,6 +33,11 @@ plan.remote(function(remote) {
   remote.log('Move folder to root');
   remote.sudo('cp -R /tmp/' + tmpDir + ' ~', {user: username});
   remote.rm('-rf /tmp/' + tmpDir);
+
+  remote.log('Moving comics to temp dir.');
+  remote.sudo('cp -R ~/' + appName + '/public/comics ~/comics-tmp-' + new Date().getTime());
+  remote.log('Clearing new comics folder');
+  remote.rm('-rf ~/' + tmpDir + '/public/comics');
 
   remote.log('Install dependencies');
   remote.sudo('npm --production --prefix ~/' + tmpDir + ' install ~/' + tmpDir, {user: username});
