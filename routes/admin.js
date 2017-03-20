@@ -4,9 +4,6 @@ const multer = require('multer');
 const mkdirp = require('mkdirp');
 const Comic = require('../models/comic');
 
-const requireAuth = passport.authenticate('jwt', { session: false });
-const requireSignin = passport.authenticate('local', {session: false});
-
 const router = express.Router();
 
 const storage =   multer.diskStorage({
