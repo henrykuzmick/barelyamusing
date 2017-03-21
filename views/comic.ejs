@@ -2,6 +2,12 @@
 <html>
   <head>
     <% include ./partials/head %>
+    <meta property="og:url"                content="http://www.barelyamusing.com/comics/<%= comic.url %>"/>
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="Barely Amusing - <%= comic.title %>" />
+    <meta property="og:description"        content='A sad place for sad people.' />
+    <meta property="og:image"              content="http://www.barelyamusing.com/comics/<%= comic.url %>/fb.png" />
+    <meta name="keywords" content="<%= comic.tags %>">
     <title><%= `Barely Amusing - ${comic.title}` %></title>
   </head>
   <body>
@@ -10,13 +16,13 @@
       <div class="comicPage">
         <div class="comicHolder">
           <h1><%= comic.title %></h1>
-          <img src="/<%= comic.main %>" />
+          <img src="/<%= comic.main %>" alt="<%= comic.title %> <%= comic.tags %>"/>
         </div>
         <% if(prev !== null) { %>
           <div class="left">
             <a href="/comics/<%= prev.url %>" class="thumb thumb-frame">
               <div class="imghold">
-                <img src="/<%= prev.thumb %>" />
+                <img src="/<%= prev.thumb %>" alt="<%= prev.title %> <%= prev.tags %>" />
               </div>
             </a>
           </div>
@@ -25,7 +31,7 @@
           <div class="right">
             <a href="/comics/<%= next.url %>" class="thumb thumb-frame">
               <div class="imghold">
-                <img src="/<%= next.thumb %>" />
+                <img src="/<%= next.thumb %>" alt="<%= next.title %> <%= next.tags %>"/>
               </div>
             </a>
           </div>
@@ -70,7 +76,7 @@
             <a class="ln" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http://www.barelyamusing.com/comics/<%= comic.url%>&title=<%= comic.title %>">
               <i class="fa fa-linkedin-square" aria-hidden="true"></i>
             </a>
-            <a class="em" href="mailto:?subject=<%= comic.title%>&body=Hey check this out: https://www.facebook.com/sharer.php?u=http://www.barelyamusing.com/comics/<%= comic.url%>">
+            <a class="em" href="mailto:?subject=<%= comic.title%>&body=Hey check this out: http://www.barelyamusing.com/comics/<%= comic.url%>">
               <i class="fa fa-envelope-square" aria-hidden="true"></i>
             </a>
           </div>

@@ -14,7 +14,7 @@
             <% latest.forEach((comic) => { %>
               <a href="comics/<%= comic.url %>" class="thumb thumb-fullwidth thumb-frame">
                 <div class="imghold">
-                  <img src="<%= comic.long %>" />
+                  <img src="<%= comic.long %>" alt="<%= comic.title %> <%= comic.tags %>"/>
                 </div>
               </a>
             <% }) %>
@@ -24,7 +24,7 @@
               <div class="col-xs-6 col-sm-3 p5">
                 <a href="comics/<%= comic.url %>" class="thumb thumb-fullwidth thumb-frame">
                   <div class="imghold">
-                    <img src="<%= comic.thumb %>" />
+                    <img src="<%= comic.thumb %>" alt="<%= comic.title %> <%= comic.tags %>" />
                   </div>
                 </a>
               </div>
@@ -42,7 +42,7 @@
               <div class="col-xs-6 col-sm-3 col-md-6 p5">
                 <a href="comics/<%= comic.url %>" class="thumb thumb-fullwidth thumb-frame">
                   <div class="imghold">
-                    <img src="<%= comic.thumb %>" />
+                    <img src="<%= comic.thumb %>" alt="<%= comic.title %> <%= comic.tags %>" />
                   </div>
                 </a>
               </div>
